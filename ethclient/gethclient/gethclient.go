@@ -225,6 +225,8 @@ func toCallArg(msg ethereum.CallMsg) interface{} {
 		"to":   msg.To,
 	}
 	if len(msg.Data) > 0 {
+		// Due to the Endurance Network using geth (1.1.8-0914c5e8-20221031) which does not support the "input" term,
+		// we are using "data" temporarily and will switch to "input" once geth is upgraded to the latest version.
 		arg["data"] = hexutil.Bytes(msg.Data)
 	}
 	if msg.Value != nil {
